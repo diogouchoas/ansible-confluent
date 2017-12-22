@@ -1,38 +1,62 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installation of Confluent Platform Open Source on Ubuntu
+
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ubuntu LTS
+Ansible 2.4
 
 Role Variables
 --------------
+Host groups:
+ - kafka
+ - zookeeper
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+global vars:
+
+# Platforms version
+cp_version: '4.0'
+
+# Scala instalation version
+scala_verison: '2.11'
+
+# Kafka configuration directory
+kafka_conf_dir: /etc/kafka
+
+# Zookeeper data directory
+zookeeper_data_dir: /var/lib/zookeeper
+
+# Kafka data directory
+kafka_data_dir: /var/lib/kafka
+
+# Schema Registry configuration directory
+schema_conf_dir: /etc/schema-registry
+
+# Kafka Utils directory
+kafka_utils_dir: "/etc/kafka_discovery"
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: ngaloha.ansible-confluent }
 
 License
 -------
 
-BSD
+Apache
 
 Author Information
 ------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Nazar Halokha
