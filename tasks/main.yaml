@@ -1,0 +1,10 @@
+---
+# tasks file for ansible-confluent
+
+- include_tasks: base.yml
+- include_tasks: confluent.yml
+- include_tasks: kafka.yml
+- include_tasks: zookeeper.yml
+- include_tasks: schema.yml
+- include_tasks: rest.yml
+- include_tasks: connect.yml

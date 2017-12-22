@@ -1,0 +1,28 @@
+---
+# Zookeeper configurations
+
+- name: Generating Zookeeper configuration file
+  template:
+    src: "{{ zookeeper_template }}"
+    dest: "{{ kafka_conf_dir }}/zookeeper.properties"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0660
+    backup: yes
+
+- name: Creating Zookeeper data directory
+  file:
+    path: "{{ zookeeper_data_dir }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 775
+
+- name: Generating Zookeeper ID file
+  lineinfile:
+    dest: "{{ zookeeper_data_dir }}/myid"
+    create: yes
+    line: "{{ groups.zookeeper.index(inventory_hostname) + 1 }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 775

@@ -1,0 +1,18 @@
+---
+# vars file for ansible-confluent
+# Confluent community package name
+cp_package: confluent-platform-oss
+
+# Kafka user
+user: confluent
+
+# Kafka user group
+group: "{{ user }}"
+
+# Defining template files ( allow to switch it on variable value)
+cluster_template: cluster.j2
+kafka_template: kafka.j2
+zookeeper_template: zookeeper.j2
+rest_template: rest.j2
+connect_template: connect.j2
+schema_registry_template: schema.j2

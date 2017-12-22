@@ -1,0 +1,8 @@
+[localhost]
+localhost
+
+[kafka]
+localhost
+
+[zookeeper]
+localhost

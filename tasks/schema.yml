@@ -1,0 +1,18 @@
+---
+# Configuring the schema schema registry
+
+- name: Creating schema registry configuration directory
+  file:
+    path: "{{ schema_conf_dir }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 775
+
+- name: Generating schema registry configyration file
+  template:
+    src: "{{ schema_registry_template }}"
+    dest: "{{ schema_conf_dir }}/schema-registry.properties"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0664

@@ -1,0 +1,51 @@
+---
+# Additional modules to be installed
+
+- name: Installing additional packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - build-essential
+    - libssl-dev
+    - libffi-dev
+    - python-dev
+    - python-crypto
+
+- name: Downloading pip bootstrap file
+  get_url:
+    validate_certs: no
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+
+
+- name: Installing pip
+  shell: python /tmp/get-pip.py
+
+- name: Installing PyOpenSSL module
+  pip:
+    name: pyopenssl
+
+- name: Set nofile limits
+  lineinfile:
+    dest: /etc/security/limits.d/90-nofile.conf
+    insertafter: EOF
+    state: present
+    create: yes
+    line: "{{ item }}"
+    mode: 0644
+  with_items:
+    - "* soft nofile 32768"
+    - "* hard nofile 32768"
+
+- name: Set nproc limits
+  lineinfile:
+    dest: /etc/security/limits.d/91-nproc.conf
+    insertafter: EOF
+    state: present
+    create: yes
+    line: "{{ item }}"
+    mode: 0644
+  with_items:
+    - "* soft nproc 32768"
+    - "* hard nproc 32768"

@@ -1,0 +1,52 @@
+---
+# Kafka configuration
+
+- name: Creating group
+  group:
+    name: "{{ group }}"
+    state: present
+
+- name: Creatting user
+  user:
+    name: "{{ user }}"
+    shell: /bin/bash
+    home: /bin/true
+    group: "{{ group }}"
+
+- name: Creating configuration directory
+  file:
+    path: "{{ kafka_conf_dir }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0660
+
+- name: Creating kafka utils configuration directory
+  file:
+    path: "{{ kafka_utils_dir }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0660
+
+- name: Installing kafka utils module
+  pip:
+    name: kafka-utils
+
+- name: Setting kafka cluster type with cluster information
+  template:
+    src: "{{ cluster_template }}"
+    dest: "{{ kafka_utils_dir }}/cluster_type.yml"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0660
+    backup: yes
+
+- name: Setting Kafka properties
+  template:
+    src: "{{ kafka_template }}"
+    dest: "{{ kafka_conf_dir }}/server.properties"
+    owner: "{{ user }}"
+    group: "{{ group}}"
+    mode: 0664
+    backup: yes

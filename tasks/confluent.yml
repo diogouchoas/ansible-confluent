@@ -1,0 +1,19 @@
+---
+# Install confluent platform
+
+- name: Adding an APT signing key, will not download if present
+  apt_key:
+    validate_certs: no
+    url: "http://packages.confluent.io/deb/{{ cp_version }}/archive.key"
+    state: present
+
+- name: Adding reoisitory to apt sources
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.confluent.io/deb/{{ cp_version }} stable main"
+    state: present
+
+- name: Update repositories cache and install confluent-platform package
+  apt:
+    name: "confluent-platform-oss-{{ scala_verison }}"
+    state: present
+    update_cache: yes

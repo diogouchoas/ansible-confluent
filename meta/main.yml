@@ -1,0 +1,25 @@
+galaxy_info:
+  author: Nazar Halokha
+  description: Instaling confluent platform
+  company: ngglobal
+
+  license: license (Apache)
+
+  min_ansible_version: 1.2
+
+  platforms:
+   - name: Ubuntu
+     versions:
+     - all
+
+  galaxy_tags:
+    - confluent
+    - kafka
+    - zookeeper
+    - schema-registry
+    - kafka-utils
+    - pip
+    - kafka-rest
+    - kafka-connect
+
+dependencies: []

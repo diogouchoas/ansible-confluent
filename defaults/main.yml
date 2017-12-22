@@ -1,0 +1,23 @@
+---
+# defaults file for ansible-confluent
+
+# Platforms version
+cp_version: '4.0'
+
+# Scala instalation version
+scala_verison: '2.11'
+
+# Kafka configuration directory
+kafka_conf_dir: /etc/kafka
+
+# Zookeeper data directory
+zookeeper_data_dir: /var/lib/zookeeper
+
+# Kafka data directory
+kafka_data_dir: /var/lib/kafka
+
+# Schema Registry configuration directory
+schema_conf_dir: /etc/schema-registry
+
+# Kafka Utils directory
+kafka_utils_dir: "/etc/kafka_discovery"

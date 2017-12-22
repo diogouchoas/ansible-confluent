@@ -1,0 +1,8 @@
+listeners=http://0.0.0.0:8081
+
+kafkastore.connection.url={% for node in groups.zookeeper %}{{ node }}:2181{%if not loop.last %},{% endif %} {% endfor %}
+
+#kafkastore.bootstrap.servers={% for node in groups.kafka %}{{ node }}:2181{%if not loop.last %},{% endif %} {% endfor %}
+
+kafkastore.topic=_schemas
+debug={{ debug | default(false) }}
